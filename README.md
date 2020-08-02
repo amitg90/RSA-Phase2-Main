@@ -1,7 +1,7 @@
 # RSA-Core
 
 # Checkout Instructions
-git clone -b RSA-V2 https://github.com/tadinve/RSA-Core.git
+git clone -b RSA-V2 https://github.com/amitg90/MY-RSA.git
 
 # Build and load in kubernetes instructions
 <Will Add>
