@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block user %}active{% endblock %}
+{% block content %}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Zip code</th>
+            <th scope="col">Phone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.fullname }}</td>
+            <td>{{ user.email }}</td>
+            {% if user.address2 %}
+            <td>{{ user.address1 }}, {{ user.address2 }}, {{ user.city }}, {{ user.state }}, {{ user.country }}</td>
+            {% else %}
+            <td>{{ user.address1 }}, {{ user.city }}, {{ user.state }}, {{ user.country }}</td>
+            {% endif %}
+            <td>{{ user.zip_code }}</td>
+            <td>{{ user.phone_number }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block home %}active{% endblock %}
+{% block content %}
+<div class="row">
+  <aside class="col-md-12">
+    <output>
+      {% for product in products %}
+      <article class="card card-product-list mb-4">
+        <div class="card-body">
+          <div class="row">
+            <aside class="col-sm-3">
+              {% if product.link_to_images %}
+              <a href="/product/detail/{{product.id}}" class="img-wrap"><img src="{{product.link_to_images[0]}}"></a>
+              {% else %}
+              <a href="/product/detail/{{product.id}}" class="img-wrap"><img
+                  src="{{ url_for('static', filename='placeholder.png') }}"></a>
+              {% endif %}
+            </aside> <!-- col.// -->
+            <article class="col-sm-6">
+              <a href="/product/detail/{{product.id}}" class="title mt-2 h5">{{product.title}}</a>
+              {% if product.author %}
+              <div class="mb-3">
+                <small class="text-muted">By {{product.author}}</small>
+              </div>
+              {% elif product.classdate%}
+              <div class="mb-3">
+                <small class="text-muted">On {{product.classdate}}</small>
+              </div>
+              {% elif product.category%}
+              <div class="mb-3">
+                <small class="text-muted">Our {{product.category}}'s</small>
+              </div>
+              {% endif %}
+              <main>
+                <p>{{product.description}}</p>
+              </main>
+            </article> <!-- col.// -->
+            <aside class="col-sm-3">
+              <div class="price-wrap mt-2">
+                <span class="price h5"> ${{product.unitprice}} </span>
+
+              </div> <!-- info-price-detail // -->
+
+              <p class="small text-success"> Free shipping </p>
+              <br>
+              <form action="/checkout/{{product.id}}" class="row" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label for="units">Quantity</label>
+                  <input type="number" id="units" name="units" class="form-control" value="1" step="1">
+                </div>
+                <button type="submit" class="btn btn-primary">Buy Now</button>
+              </form>
+              <br>
+            </aside> <!-- col.// -->
+          </div> <!-- row.// -->
+        </div> <!-- card-body .// -->
+      </article>
+      {% else %}
+      <p>No Products found</p>
+      {% endfor %}
+    </output>
+  </aside>
+  {% if last_product_id %}
+  <nav>
+    <ul class="pager">
+      <li><a href="?start_after={{last_product_id}}">More</a></li>
+    </ul>
+  </nav>
+  {% endif %}
+</div>
+{% endblock %}

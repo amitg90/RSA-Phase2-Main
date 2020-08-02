@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block addproduct %}active{% endblock %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title">Product Title</label>
+        <input type="text" name="title" id="title" value="{{product.title}}" class="form-control" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" value="{{product.description}}" class="form-control" required/>
+    </div>
+    <div class="form-group">
+      <label for="unitprice">Price</label>
+      <input type="number" name="unitprice" id="unitprice" value="{{product.unitprice}}" class="form-control" required/>
+    </div>
+    <div class="form-group">
+      <label for="qoh">Quantity</label>
+      <input type="number" name="qoh" id="qoh" value="{{product.qoh}}" class="form-control" required/>
+    </div>
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input type="text" name="author" id="author" value="{{product.author}}" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <label for="link_to_images">Cover Image</label>
+        <input type="file" name="link_to_images" id="link_to_images" class="form-control" multiple/>
+    </div>
+
+    <div class="form-group">
+      <label for="link_to_econtent">E-content Link</label>
+      <input type="text" name="link_to_econtent" id="link_to_econtent" value="{{product.link_to_econtent}}" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+      <label for="classdate">Class date</label>
+      <input type="date" name="classdate" id="classdate" class="form-control"/>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    
+</form>
+{% endblock %}

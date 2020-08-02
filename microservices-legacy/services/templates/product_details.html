@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="card mt-5">
+  <div class="row no-gutters">
+    <aside class="col-md-6">
+      <article class="gallery-wrap">
+        {% if product.link_to_images %}
+        <div class="img-big-wrap mt-3">
+          <div> <a href="#"><img src="{{product.link_to_images[0]}}"></a></div>
+        </div> <!-- slider-product.// -->
+        <div class="thumbs-wrap">
+          {% for image in product.link_to_images %}
+          <a href="" class="item-thumb"> <img src="{{image}}"></a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="img-big-wrap mt-3">
+          <div> <a href="#"><img src="{{ url_for('static', filename='placeholder.png') }}"></a></div>
+        </div>
+        {% endif %}
+      </article> <!-- gallery-wrap .end// -->
+    </aside>
+    <main class="col-md-6 border-left">
+      <article class="content-body">
+        <h2 class="title">{{product.title}}</h2>
+        <div class="my-3">
+          <small class="label-rating text-muted">By {{product.author}}</small>
+          <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> {{product.qoh}}
+            available </small>
+        </div> <!-- rating-wrap.// -->
+        <div class="mb-3">
+          <var class="price h4">${{product.unitprice}}</var>
+        </div> <!-- price-detail-wrap .// -->
+        <p>{{product.description}}</p>
+        <hr>
+        <form action="/checkout/{{product.id}}" class="row" method="POST" enctype="multipart/form-data">
+          <div class="mt-3">
+            <div class="form-group">
+              <label for="units">Quantity</label>
+              <input type="number" id="units" name="units" class="form-control" value="1" step="1">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Buy Now</button>
+            </div>
+          </div>
+        </form>
+      </article> <!-- product-info-aside .// -->
+    </main> <!-- col.// -->
+  </div> <!-- row.// -->
+</div> <!-- card.// -->
+
+
+{% endblock %}

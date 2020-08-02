@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="row section-components padding-y mt-3">
+
+    <aside class="col-md-7">
+
+        <figure class="card card-product-grid">
+            <strong class="title">
+                Order confirmation email sent to {{user.email}}
+            </strong>
+            <div class="info-wrap border-top">
+
+                <div class="form-group">
+                    <label for="fullname"><strong>Full Name :</strong>{{user.fullname}}</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="address1"><strong>Address :</strong>{{user.address1}}</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="city"><strong>City :</strong>{{user.city}}</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="country"><strong>Country :</strong>{{user.country}}</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="state"><strong>State :</strong>{{user.state}}</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="zip_code"><strong>Zip code :</strong>{{user.zip_code}}</label>
+                </div>
+                {% if user.phone_number %}
+                <div class="form-group">
+                    <label for="phone_number"><strong>Ph: </strong>{{user.phone_number}}</label>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </figure> <!-- card // -->
+
+    </aside>
+
+    <aside class="col-md-5">
+
+        <figure class="card card-product-grid">
+            <div class="img-wrap">
+                <img src="{{product.link_to_images[0]}}">
+            </div>
+            <figcaption class="info-wrap border-top">
+                <a href="#" class="title">{{product.title}}</a>
+                <div class="row mt-2">
+                    <aside class="price-wrap col-md-5">
+                        <small class="price-old">${{order.total_price}}</small>
+                    </aside> <!-- price-wrap.// -->
+                    <aside class="form-group col-md-5 flex-grow-0">
+                        <label>Quantity {{order.units}}</label>
+                    </aside>
+                </div>
+            </figcaption>
+
+        </figure> <!-- card // -->
+
+    </aside>
+
+
+</div>
+
+<div class="row d-flex justify-content-center">
+    <a href="/home" class="btn btn-primary">Continue Shopping</a>
+</div>
+
+{% endblock %}
